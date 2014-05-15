@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bootstrapDemoApp" id="top">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Bible Study</title>
+    <meta name="description" content="Bible, Bible Study">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-touch.min.js"></script>
+    <script src="ui-bootstrap-tpls-0.11.0.min.js"></script>
+   
+    <script src="assets/app.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/rainbow.css"/>
+    <link rel="stylesheet" href="assets/demo.css"/>
+</head>
+<body class="ng-cloak" ng-controller="MainCtrl">
+<header class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" ng-click="isCollapsed = !isCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand visible-xs" href="#">Bible Study</a>
+            </div>
+            <nav class="hidden-xs">
+                <ul class="nav navbar-nav">
+                    <a href="#top" role="button" class="navbar-brand">
+                        PCCO Bible Study
+                    </a>
+                    <li class="dropdown">
+                        <a role="button" class="dropdown-toggle">
+                            Class List <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#accordion">Class 1</a></li><li><a href="#carousel">Class 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#getting_started">Getting started</a></li>
+                </ul>
+            </nav>
+            <nav class="visible-xs" collapse="!isCollapsed">
+                <ul class="nav navbar-nav">
+                    <li><a href="#getting_started" ng-click="isCollapsed = !isCollapsed">Getting started</a></li>
+                    <li><a href="#directives_small" ng-click="isCollapsed = !isCollapsed">Class List</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="header-placeholder"></div>
+<div role="main">
+    <header class="text-center" id="overview">
+        <div class="container">
+            <h1>
+                PCCO Bible Study
+            </h1>
+
+            <p>Study Bible by 1,2,3</p>
+
+           
+        </div>
+        
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="bs-sidebar visible-xs" id="directives_small">
+                    <ul class="nav bs-sidenav">
+                        <li><a href="#"><strong>Class List</strong></a></li>
+                        
+                            <li><a href="#accordion">Class 1</a></li>
+                        
+                            
+                        
+                            <li><a href="#carousel">Class 2</a></li>
+                        
+                            
+                        
+                    </ul>
+                </section>
+
+                <section id="getting_started">
+                    <div class="page-header">
+                        <h1>Getting started</h1>
+                    </div>
+                    <h3>How to Study Bible</h3>
+                    <p>
+                        4 steps to do
+                    </p>
+                    <ul>
+                        <li>Read</li>
+                        <li>Question 1
+                        </li>
+                        <li>Question 2
+                        </li>
+                        <li>Question 3
+                        </li>
+                    </ul>
+                    
+                </section>
+                
+                    <section id="accordion" ng-controller="AccordionDemoCtrl">
+                        <div class="page-header">
+                          <h1>Class 1<small>
+                             {{book}} {{chapter}}:{{verses}}
+                          </small></h1>
+                             <div ng-controller="ProgressDemoCtrl"> <progressbar class="progress-striped active" value="dynamic" max="max" type="{{type}}"  >{{dynamic}}% </progressbar></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 show-grid">
+                                <div >
+ 
+ 
+  <accordion close-others=true>
+    <accordion-group heading="Read"  is-open=true>
+        <p ng-repeat="para in paras">
+            {{para.content}}
+        </p>
+    </accordion-group>
+    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+        <div class="form-group">
+      <label>Answer:</label>
+      <input type="text" ng-model="group.input" class="form-control">
+    </div>
+     <p ng-show="group.input.length>0">{{group.content}}</p> 
+    </accordion-group>
+    
+    
+  </accordion>
+</div>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        
+                    </section>
+                    <script>function AccordionDemoCtrl($scope) {
+  $scope.oneAtATime = true;
+    $scope.book='Luke';
+    $scope.chapter='1';
+    $scope.verses='8-25';
+  $scope.paras=[{content:'8 Once when Zechariah’s division was on duty and he was serving as priest before God, 9 he was chosen by lot, according to the custom of the priesthood, to go into the temple of the Lord and burn incense. 10 And when the time for the burning of incense came, all the assembled worshipers were praying outside.'},{content:'11 Then an angel of the Lord appeared to him, standing at the right side of the altar of incense. 12 When Zechariah saw him, he was startled and was gripped with fear. 13 But the angel said to him: “Do not be afraid, Zechariah; your prayer has been heard. Your wife Elizabeth will bear you a son, and you are to call him John. 14 He will be a joy and delight to you, and many will rejoice because of his birth, 15 for he will be great in the sight of the Lord. He is never to take wine or other fermented drink, and he will be filled with the Holy Spirit even before he is born. 16 He will bring back many of the people of Israel to the Lord their God. 17 And he will go on before the Lord, in the spirit and power of Elijah, to turn the hearts of the parents to their children and the disobedient to the wisdom of the righteous—to make ready a people prepared for the Lord.”'},{content:'18 Zechariah asked the angel, “How can I be sure of this? I am an old man and my wife is well along in years.”'},{content:'19 The angel said to him, “I am Gabriel. I stand in the presence of God, and I have been sent to speak to you and to tell you this good news. 20 And now you will be silent and not able to speak until the day this happens, because you did not believe my words, which will come true at their appointed time.”'},{content:'21 Meanwhile, the people were waiting for Zechariah and wondering why he stayed so long in the temple. 22 When he came out, he could not speak to them. They realized he had seen a vision in the temple, for he kept making signs to them but remained unable to speak.'},{content:'23 When his time of service was completed, he returned home. 24 After this his wife Elizabeth became pregnant and for five months remained in seclusion. 25 “The Lord has done this for me,” she said. “In these days he has shown his favor and taken away my disgrace among the people.”'}];
+  $scope.groups = [
+    {
+      title: 'Question - 1',
+      content: 'Sample Answer - 1',
+        input:''
+    },
+    {
+      title: 'Question - 2',
+      content: 'Sample Answer - 2',
+        input:''
+    },
+      {
+           title: 'Question - 3',
+      content: 'Sample Answer - 3',
+          input:''
+      }
+  ];
+
+}
+</script>
+                
+                    
+                    
+                
+                    
+                    
+                
+                    <section id="carousel" ng-controller="CarouselDemoCtrl">
+                        <div class="page-header">
+                          <h1>Class 2<small>
+                              {{book}} {{chapter}}:{{verses}}
+                          </small></h1>
+                           <div ng-controller="ProgressDemoCtrl"> <progressbar class="progress-striped active" value="dynamic" max="max" type="{{type}}"  >{{dynamic}}% </progressbar></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 show-grid">
+                                <div >
+  <div >
+    <carousel >
+        <slide>
+         <div class="slide-container"><p ng-repeat="para in paras">
+            {{para.content}}
+        </p></div>
+            
+        </slide>
+      <slide ng-repeat="group in groups" >
+        <div class="slide-container form-group">
+            <lable>Question:</lable>
+            <p>{{group.title}}</p>
+      <label>Answer:</label>
+      <input type="text" ng-model="group.input" class="form-control">
+            <p ng-show="group.input.length>0">{{group.content}}</p> 
+    </div>
+     
+        <div class="carousel-caption">
+          <p>{{$index+1}}/{{groups.length}}</p>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+  
+</div>
+
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        
+                    </section>
+                    <script>function CarouselDemoCtrl($scope) {
+  //$scope.myInterval = 5000;
+  $scope.book='Luke';
+    $scope.chapter='1';
+    $scope.verses='8-25';
+  $scope.paras=[{content:'8 Once when Zechariah’s division was on duty and he was serving as priest before God, 9 he was chosen by lot, according to the custom of the priesthood, to go into the temple of the Lord and burn incense. 10 And when the time for the burning of incense came, all the assembled worshipers were praying outside.'},{content:'11 Then an angel of the Lord appeared to him, standing at the right side of the altar of incense. 12 When Zechariah saw him, he was startled and was gripped with fear. 13 But the angel said to him: “Do not be afraid, Zechariah; your prayer has been heard. Your wife Elizabeth will bear you a son, and you are to call him John. 14 He will be a joy and delight to you, and many will rejoice because of his birth, 15 for he will be great in the sight of the Lord. He is never to take wine or other fermented drink, and he will be filled with the Holy Spirit even before he is born. 16 He will bring back many of the people of Israel to the Lord their God. 17 And he will go on before the Lord, in the spirit and power of Elijah, to turn the hearts of the parents to their children and the disobedient to the wisdom of the righteous—to make ready a people prepared for the Lord.”'},{content:'18 Zechariah asked the angel, “How can I be sure of this? I am an old man and my wife is well along in years.”'},{content:'19 The angel said to him, “I am Gabriel. I stand in the presence of God, and I have been sent to speak to you and to tell you this good news. 20 And now you will be silent and not able to speak until the day this happens, because you did not believe my words, which will come true at their appointed time.”'},{content:'21 Meanwhile, the people were waiting for Zechariah and wondering why he stayed so long in the temple. 22 When he came out, he could not speak to them. They realized he had seen a vision in the temple, for he kept making signs to them but remained unable to speak.'},{content:'23 When his time of service was completed, he returned home. 24 After this his wife Elizabeth became pregnant and for five months remained in seclusion. 25 “The Lord has done this for me,” she said. “In these days he has shown his favor and taken away my disgrace among the people.”'}];
+  $scope.groups = [
+    {
+      title: 'Question - 1',
+      content: 'Sample Answer - 1',
+        input:''
+    },
+    {
+      title: 'Question - 2',
+      content: 'Sample Answer - 2',
+        input:''
+    },
+      {
+           title: 'Question - 3',
+      content: 'Sample Answer - 3',
+          input:''
+      }
+  ];
+ 
+}
+</script>
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    <script>var ProgressDemoCtrl = function ($scope) {
+
+  $scope.max = 100;
+
+  $scope.random = function() {
+    var value = Math.floor((Math.random() * 100) + 1);
+    var type;
+
+    if (value < 25) {
+      type = 'danger';
+    } else if (value < 50) {
+      type = 'warning';
+    } else if (value < 75) {
+      type = 'info';
+    } else {
+      type = 'success';
+    }
+
+    $scope.showWarning = (type === 'danger' || type === 'warning');
+
+    $scope.dynamic = value;
+    $scope.type = type;
+  };
+  $scope.random();
+
+  
+};
+</script> 
+            </div>
+        </div>
+    </div><!-- /.container -->
+</div><!-- /.main -->
+<footer class="footer">
+    <div class="container">
+        <p>Designed and built by Long Cheng</p>
+    </div>
+</footer>
+<script src="assets/rainbow.js"></script>
+<script src="assets/rainbow-generic.js"></script>
+<script src="assets/rainbow-javascript.js"></script>
+<script src="assets/rainbow-html.js"></script>
+
+
+
+<script src="assets/smoothscroll-angular-custom.js"></script>
+</body>
+</html>
